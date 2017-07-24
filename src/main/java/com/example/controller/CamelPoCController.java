@@ -30,9 +30,7 @@ public class CamelPoCController {
 
 	@RequestMapping(value = "/camelConsumeDelete", method = RequestMethod.GET)
 	public ModelAndView camelConsumeDelete() throws Exception {
-    	
-
-		try {
+    	try {
 			context.addRoutes(new RouteBuilder() {
 				@Override
 				public void configure() throws Exception {
@@ -122,15 +120,12 @@ public class CamelPoCController {
 	
 	@RequestMapping(value = "/camelConsumeJPAFile", method = RequestMethod.GET)
 	public ModelAndView camelConsumeJPAFile() throws Exception {
-    	
-
 		try {
 			context.addRoutes(new RouteBuilder() {
 				@Override
 				public void configure() throws Exception {
 					from("jpa://com.example.model.User?consumer.delay=5s"
-							+ "&consumeDelete=false"
-							+ "&consumer.quer=select * from User wher status = 'P' ").marshal().json(JsonLibrary.Jackson)
+							+ "&consumeDelete=false").marshal().json(JsonLibrary.Jackson)
 					.to("file:data/outbox");
 				}
 			});
@@ -154,9 +149,7 @@ public class CamelPoCController {
 				public void configure() throws Exception {
 					from("jpa://com.example.model.User2?"
 							+ "consumer.delay=5s"
-							+ "&consumeDelete=false"
-							+ "&consumeLockEntity=true"
-							+ "&consumer.SkipLockedEntity=false")
+							+ "&consumeDelete=false")
 					.marshal()
 					.json(JsonLibrary.Jackson)
 					.to("file:data/outbox");

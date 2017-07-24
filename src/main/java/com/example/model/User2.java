@@ -12,7 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.apache.camel.component.jpa.PreConsumed;
+import org.apache.camel.component.jpa.Consumed;
 import org.hibernate.annotations.NamedQuery;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -124,7 +124,7 @@ public class User2 {
 			this.status = status;
 		}
 
-		@PreConsumed
+		@Consumed
 	    public void consume()
 	    {
 	        setStatus("D");
